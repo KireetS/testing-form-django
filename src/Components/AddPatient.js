@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const AddPatient = () => {
   const [name, setName] = useState("");
   const [nationality, setNationality] = useState("");
@@ -8,7 +10,7 @@ const AddPatient = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
-  const [dob, setDOB] = useState();
+  const [dob, setDOB] = useState(new Date());
   const [age, setAge] = useState("");
   const [address, setAddress] = useState("");
   const [btype, setBtype] = useState("");
@@ -108,12 +110,20 @@ const AddPatient = () => {
       </div>
       <div>
         <label htmlFor="">Date Of birth</label>
+        <DatePicker
+          selected={dob}
+          onChange={(dob) => {
+            setDOB(dob);
+          }}
+        />
+      </div>
+      <div>
+        <label htmlFor="">Age</label>
         <input
-          type="date"
-          value={dob}
+          type="Number"
+          value={age}
           onChange={(e) => {
-            setDOB(e.target.value);
-            console.log(dob);
+            setAge(e.target.value);
           }}
         />
         <div>
@@ -130,16 +140,6 @@ const AddPatient = () => {
             <option>Days</option>
           </select>
         </div>
-      </div>
-      <div>
-        <label htmlFor="">Age</label>
-        <input
-          type="Number"
-          value={age}
-          onChange={(e) => {
-            setAge(e.target.value);
-          }}
-        />
       </div>
       <div>
         <label htmlFor="">address</label>
